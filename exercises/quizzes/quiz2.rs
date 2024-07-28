@@ -26,13 +26,30 @@ use std::collections::HashMap;
 
 mod my_module {
     use super::Command;
+    use super::HashMap;
 
     // TODO: Complete the function.
-    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> { 
-        // let hash = 
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
+        let hash: HashMap<String, Command> = HashMap::from_iter(input);
+        let mut str_vec: Vec<String> = Vec::new();
+
+        for (st, cmd) in &hash {
+            let new_st = match cmd {
+                Command::Uppercase => st.to_uppercase(),
+                Command::Trim => st.trim().to_string(),
+                Command::Append(n) => {
+                    let mut st_str = st.clone(); 
+                    st_str.push_str(&"bar".repeat(*n));
+                    st_str.to_string()
+                }
+            };
+
+            str_vec.push(new_st);
+        }
+
+        str_vec
     }
 }
-
 fn main() {
     // You can optionally experiment here.
 }
@@ -42,6 +59,7 @@ mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
     // use ???;
     use super::Command;
+    use super::my_module::transformer;
 
     #[test]
     fn it_works() {
