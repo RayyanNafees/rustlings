@@ -22,12 +22,15 @@ enum Command {
     Trim,
     Append(usize),
 }
+use std::collections::HashMap;
 
 mod my_module {
     use super::Command;
 
     // TODO: Complete the function.
-    // pub fn transformer(input: ???) -> ??? { ??? }
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> { 
+        // let hash = 
+    }
 }
 
 fn main() {
